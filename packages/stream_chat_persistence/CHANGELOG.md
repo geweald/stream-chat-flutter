@@ -1,3 +1,7 @@
+## Upcoming
+
+- Allowed experimental use of indexedDb on web with `webUseExperimentalIndexedDb` parameter on `StreamChatPersistenceClient`
+
 ## 4.1.0
 
 🔄 Changed
