@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:stream_chat_flutter/src/message_widget/message_widget_content_components.dart';
 import 'package:stream_chat_flutter/src/message_widget/reactions/desktop_reactions_builder.dart';
 import 'package:stream_chat_flutter/src/utils/utils.dart';
@@ -57,6 +56,7 @@ class MessageWidgetContent extends StatelessWidget {
     this.deletedBottomRowBuilder,
     this.userAvatarBuilder,
     this.usernameBuilder,
+    this.sendingIndicatorBuilder,
   });
 
   /// {@macro reverse}
@@ -155,6 +155,9 @@ class MessageWidgetContent extends StatelessWidget {
   /// {@macro bottomRowBuilder}
   final Widget Function(BuildContext, Message)? bottomRowBuilder;
 
+  /// {@macro sendingIndicatorBuilder}
+  final Widget Function(BuildContext, Message)? sendingIndicatorBuilder;
+
   /// {@macro showInChannelIndicator}
   final bool showInChannel;
 
@@ -231,6 +234,7 @@ class MessageWidgetContent extends StatelessWidget {
                       streamChat: streamChat,
                       hasNonUrlAttachments: hasNonUrlAttachments,
                       usernameBuilder: usernameBuilder,
+                      sendingIndicatorBuilder: sendingIndicatorBuilder,
                     ),
               ),
             Padding(
