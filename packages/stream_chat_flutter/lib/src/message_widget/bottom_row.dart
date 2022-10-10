@@ -30,6 +30,7 @@ class BottomRow extends StatelessWidget {
     required this.streamChatTheme,
     required this.hasNonUrlAttachments,
     required this.streamChat,
+    this.sendingIndicatorBuilder,
     this.deletedBottomRowBuilder,
     this.onThreadTap,
     this.usernameBuilder,
@@ -40,6 +41,9 @@ class BottomRow extends StatelessWidget {
 
   /// {@macro deletedBottomRowBuilder}
   final Widget Function(BuildContext, Message)? deletedBottomRowBuilder;
+
+  /// {@macro sendingIndicatorBuilder}
+  final Widget Function(BuildContext, Message)? sendingIndicatorBuilder;
 
   /// {@macro message}
   final Message message;
@@ -148,13 +152,14 @@ class BottomRow extends StatelessWidget {
         ),
       if (showSendingIndicator)
         WidgetSpan(
-          child: SendingIndicatorWrapper(
-            messageTheme: messageTheme,
-            message: message,
-            hasNonUrlAttachments: hasNonUrlAttachments,
-            streamChat: streamChat,
-            streamChatTheme: streamChatTheme,
-          ),
+          child: sendingIndicatorBuilder?.call(context, message) ??
+              SendingIndicatorWrapper(
+                messageTheme: messageTheme,
+                message: message,
+                hasNonUrlAttachments: hasNonUrlAttachments,
+                streamChat: streamChat,
+                streamChatTheme: streamChatTheme,
+              ),
         ),
     ]);
 
